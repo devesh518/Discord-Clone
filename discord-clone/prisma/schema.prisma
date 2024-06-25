@@ -32,13 +32,14 @@ model Profile{
 model Server{
   id String @id @default(uuid())
   name String
+  imageUrl String
   inviteCode String @db.Text
 
   profileId String
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  members Member[]
   channel Channel[]
+  members Member[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
