@@ -18,7 +18,7 @@ model Profile{
   id String @id @default(uuid())
   userId String? @unique
   name String?
-  imageUrl String? @db.Text
+  imageUrl String @db.Text
   email String? @db.Text
 
   servers Server[]
