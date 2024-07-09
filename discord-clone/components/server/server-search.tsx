@@ -4,7 +4,6 @@ import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command";
 import { useParams, useRouter } from "next/navigation";
-import { ChannelType } from "@prisma/client";
 
 interface ServerSearchProps {
   data: {
