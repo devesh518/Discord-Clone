@@ -1,12 +1,13 @@
 import { db } from "@/lib/db";
 
-export const getOrCreateConversation = async(memberOneId: string, memberTwoId: string) => {
-    let conversation = await findConversation(memberOneId, memberTwoId) || await findConversation(memberTwoId, memberOneId)
-
+export const getOrCreateConversation = async (memberOneId: string, memberTwoId: string) => {
+    let conversation = (await findConversation(memberOneId, memberTwoId)) || (await findConversation(memberTwoId, memberOneId))
+    console.log("i am in conversation.ts");
     if(!conversation){
         conversation = await createNewConversation(memberOneId, memberTwoId)
+        console.log("i am INSIDEEEEEEE conversation.ts");
     }
-
+        
     return conversation
 }
 
@@ -33,17 +34,31 @@ const findConversation = async (memberOneId: string, memberTwoId: string) => {
                 }
             }
         })
-    } catch {
+    } catch(error) {
         return null;
     }
 }
 
 const createNewConversation = async (memberOneId: string, memberTwoId: string) => {
-    try {
+    try { 
+        const memberOne = await db.member.findUnique({ where: { id: memberOneId } });
+        const memberTwo = await db.member.findUnique({ where: { id: memberTwoId } });
+
+        if(memberTwo){
+            console.log("Member 2 found");
+        }
+
+        if (!memberOne) {
+            throw new Error("member one not found");
+        }
+        if (!memberTwo) {
+            throw new Error("member two not found");
+        }
+
         return await db.conversation.create({
             data: {
-                memberOneId,
-                memberTwoId
+                memberOneId: memberOneId,
+                memberTwoId: memberTwoId
             },
             include: {
                 memberOne: {
@@ -58,7 +73,8 @@ const createNewConversation = async (memberOneId: string, memberTwoId: string) =
                 }
             },
         })
-    } catch {
+    } catch(error) {
+        console.log(error);
         return null;
     }
 }

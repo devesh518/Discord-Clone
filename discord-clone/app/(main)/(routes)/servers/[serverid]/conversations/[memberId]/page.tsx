@@ -21,20 +21,21 @@ const MemberIdPage = async ({
         return redirectToSignIn()
     }
     
-    const currentMember = await db.server.findFirst({
+    const currentMember = await db.member.findFirst({
         where: {
-            id: params.serverId,
-            profileId: profile?.id
+            serverId: params.serverId,
+            profileId: profile.id
         },
         include: {
             profile: true
         }
     })
 
+    // console.log(currentMember);
     if(!currentMember){
-        return redirect("/")
+        return redirect("/") 
     }
-        
+
     const conversation = await getOrCreateConversation(currentMember.id, params.memberId)
 
     if(!conversation){
@@ -44,7 +45,6 @@ const MemberIdPage = async ({
     const { memberOne, memberTwo } = conversation
 
     const otherMember = memberOne.profileId !== profile.id ? memberOne : memberTwo
-
     return (
         <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
             <ChatHeader

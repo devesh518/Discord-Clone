@@ -131,9 +131,8 @@ model Conversation {
 
   directMessages DirectMessage[]
 
-  @@index([memberTwoId])
-
   @@unique([memberOneId, memberTwoId])
+  @@index([memberTwoId])
 }
 
 model DirectMessage {
