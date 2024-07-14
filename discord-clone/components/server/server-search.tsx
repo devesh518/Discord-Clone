@@ -10,11 +10,12 @@ interface ServerSearchProps {
     label: string;
     type: "channel" | "member";
     data:
-      {
+      | {
           icon: React.ReactNode;
           name: string;
           id: string;
-        }[] | undefined;
+        }[] 
+      | undefined;
   }[];
 }
 
