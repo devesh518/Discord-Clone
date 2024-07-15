@@ -36,13 +36,16 @@ const roleIconMap = {
   [MemberRole.ADMIN]: <ShieldAlert className="h-4 w-4 mr-2 text-indigo-500" />,
 };
 
-export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
+export const ServerSidebar = async ({
+ serverId 
+} : ServerSidebarProps) => {
   const profile = await CurrentProfile();
 
   if (!profile) {
     return redirect("/");
   }
 
+  console.log("THIS THIS THIS");
   const server = await db.server.findUnique({
     where: {
       id: serverId,

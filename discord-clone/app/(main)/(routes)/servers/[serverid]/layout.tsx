@@ -1,4 +1,4 @@
-import { redirectToSignIn } from "@clerk/nextjs/server";
+import { redirectToSignIn } from "@clerk/nextjs";
 import { CurrentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
@@ -16,6 +16,8 @@ const ServerIdLayout = async ({
   if (!profile) {
     return redirectToSignIn();
   }
+
+  console.log("This is causing the error");
 
   const server = await db.server.findUnique({
     where: {
