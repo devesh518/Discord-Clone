@@ -58,15 +58,3 @@ const ServerIdPage = async ({
 }
  
 export default ServerIdPage;
-
-export async function generateStaticParams() {
-    const servers = await db.server.findMany({
-        select: {
-            id: true,
-        },
-    });
-
-    return servers.map((server) => ({
-        serverId: server.id,
-    }));
-}
