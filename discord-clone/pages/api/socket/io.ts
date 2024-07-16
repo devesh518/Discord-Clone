@@ -25,4 +25,5 @@ const ioHandler = (req: NextApiRequest, res: NextApiResponseServerIo) => {
     res.end();
 }
 
+export const runtime = 'edge';
 export default ioHandler;

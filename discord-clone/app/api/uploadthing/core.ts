@@ -20,4 +20,5 @@ export const ourFileRouter = {
     .onUploadComplete(() => {})
 } satisfies FileRouter;
 
+export const runtime = 'edge';
 export type OurFileRouter = typeof ourFileRouter;

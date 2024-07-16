@@ -58,3 +58,5 @@ const ServerIdPage = async ({
 }
  
 export default ServerIdPage;
+
+export const runtime = 'edge';
