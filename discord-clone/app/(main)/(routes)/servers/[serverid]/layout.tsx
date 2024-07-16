@@ -17,7 +17,7 @@ const ServerIdLayout = async ({
     return redirectToSignIn();
   }
 
-  console.log("This is causing the error");
+  console.log("This is causing the error", params.serverId);
 
   const server = await db.server.findUnique({
     where: {
