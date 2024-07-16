@@ -73,4 +73,3 @@ const ChannelIDPage = async ({ params }: ChannelIDPageProps) => {
 };
 
 export default ChannelIDPage;
-export const runtime = 'edge';

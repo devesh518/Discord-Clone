@@ -81,4 +81,3 @@ const MemberIdPage = async ({
 }
 
 export default MemberIdPage
-export const runtime = 'edge';

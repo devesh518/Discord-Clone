@@ -81,5 +81,3 @@ export async function GET(
         return new NextResponse("Internal server error", { status: 500 })
     }
 }
-
-export const runtime = 'edge';
