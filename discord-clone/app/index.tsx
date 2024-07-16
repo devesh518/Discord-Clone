@@ -1,6 +1,6 @@
 export const runtime = "edge";
 
-export default function Index() {
+export default function Page() {
   return (
     <div>
       <h2>Not Found</h2>
