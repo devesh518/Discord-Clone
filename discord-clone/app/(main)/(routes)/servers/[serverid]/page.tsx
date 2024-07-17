@@ -3,6 +3,8 @@ import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
+export const dynamic = 'force-dynamic'
+
 interface ServerIdPageProps{
     params: {
         serverId: string

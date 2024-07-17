@@ -4,6 +4,8 @@ import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { ServerSidebar } from "@/components/server/server-sidebar";
 
+export const dynamic = 'force-dynamic'
+
 const ServerIdLayout = async ({
   children,
   params,
