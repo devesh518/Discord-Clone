@@ -1,5 +1,7 @@
 import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
 
+export const dynamic = 'force-dynamic'
+
 const MainLayout = async ({
     children
 }: {

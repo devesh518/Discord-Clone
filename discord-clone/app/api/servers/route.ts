@@ -4,6 +4,8 @@ import { MemberRole } from "@prisma/client";
 import { db } from "@/lib/db";
 import { CurrentProfile } from "@/lib/current-profile";
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(req: Request){
     try {
         const {name, imageUrl} = await req.json();

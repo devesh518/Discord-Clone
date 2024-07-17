@@ -4,6 +4,8 @@ import { Server as ServerIO } from "socket.io"
 
 import { NextApiResponseServerIo } from "@/types";
 
+export const dynamic = 'force-dynamic'
+
 export const config = {
     api: {
         bodyParser: false
