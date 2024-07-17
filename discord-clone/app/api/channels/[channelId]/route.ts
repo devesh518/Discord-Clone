@@ -1,6 +1,7 @@
 import { CurrentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { MemberRole } from "@prisma/client";
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
 import { NextResponse } from "next/server";
 
 export async function DELETE(
@@ -57,6 +58,9 @@ export async function DELETE(
 
     } catch (error) {
         console.log("[CHANNEL_DELETE_ERROR]", error);
+        if (isDynamicServerError(error)) {
+            throw error;
+        }
         return new NextResponse("Internal server error", { status: 500 })
     }
 }

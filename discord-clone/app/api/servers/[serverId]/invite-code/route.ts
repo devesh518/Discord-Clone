@@ -1,7 +1,10 @@
 import { CurrentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid"
+
+export const dynamic = 'force-dynamic'
 
 export async function PATCH(
     req: Request,
@@ -32,6 +35,9 @@ export async function PATCH(
 
     } catch (error) {
         console.log("[SERVER_ID]", error);
+        if (isDynamicServerError(error)) {
+            throw error;
+          }
         return new NextResponse("Internal Error", { status: 500 })
     }
 }

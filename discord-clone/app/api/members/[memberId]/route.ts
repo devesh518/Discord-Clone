@@ -1,5 +1,6 @@
 import { CurrentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
+import { isDynamicServerError } from "next/dist/client/components/hooks-server-context";
 import { NextResponse } from "next/server";
 
 
@@ -127,6 +128,9 @@ export async function PATCH(
         return NextResponse.json({server})
     } catch (error) {
         console.log("[MEMBERS_ID_PATCH]", error);
+        if (isDynamicServerError(error)) {
+            throw error;
+        }
         return new NextResponse("Internal server error", { status: 500 });
     }
 }
