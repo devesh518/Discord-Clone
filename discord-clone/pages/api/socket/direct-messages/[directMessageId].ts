@@ -2,9 +2,7 @@ import { CurrentProfilePages } from "@/lib/current-profile-pages";
 import { db } from "@/lib/db";
 import { NextApiResponseServerIo } from "@/types";
 import { MemberRole } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-
-export const dynamic = 'force-dynamic'
+import { NextApiRequest } from "next";
 
 export default async function handler(
     req: NextApiRequest,

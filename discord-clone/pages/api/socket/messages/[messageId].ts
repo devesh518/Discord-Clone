@@ -4,8 +4,6 @@ import { NextApiResponseServerIo } from "@/types";
 import { MemberRole } from "@prisma/client";
 import { NextApiRequest } from "next";
 
-export const dynamic = 'force-dynamic'
-
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponseServerIo

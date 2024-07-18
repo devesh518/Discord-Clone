@@ -1,9 +1,7 @@
 import { CurrentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-
-export const dynamic = 'force-dynamic'
+import { redirect, useRouter } from "next/navigation";
 
 interface ServerIdPageProps{
     params: {
@@ -14,6 +12,7 @@ interface ServerIdPageProps{
 const ServerIdPage = async ({
     params
 }: ServerIdPageProps ) => {
+    const router = useRouter()
     const profile = await CurrentProfile();
 
     if(!profile){

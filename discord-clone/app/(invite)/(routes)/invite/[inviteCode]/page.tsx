@@ -2,7 +2,6 @@ import { CurrentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-export const dynamic = 'force-dynamic'
 
 interface InviteCodePageProps{
     params: {
