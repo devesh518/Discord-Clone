@@ -12,12 +12,17 @@ export async function POST(
         const { searchParams } = new URL(req.url)
         const { name, type } = await req.json()
         const serverid = searchParams.get("serverid")
+        const serverid1 = searchParams.get("serverId")
+        console.log(serverid)
+        console.log("Use this \n")
+        console.log(serverid1)
 
         if(!profile){
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
         if(!serverid){
+            console.log("This is giving 400 error)
             return new NextResponse("Server ID missing", { status: 400 })
         }
 
