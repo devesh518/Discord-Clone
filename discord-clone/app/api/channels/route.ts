@@ -22,7 +22,7 @@ export async function POST(
         }
 
         if(!serverid){
-            console.log("This is giving 400 error)
+            console.log("This is giving 400 error")
             return new NextResponse("Server ID missing", { status: 400 })
         }
 
