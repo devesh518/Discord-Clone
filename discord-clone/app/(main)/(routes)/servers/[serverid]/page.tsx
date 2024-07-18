@@ -18,41 +18,38 @@ const ServerIdPage = async ({
         return redirectToSignIn()
     }
 
-    try {    
-        const server = await db.server.findUnique({
-            where: {
-                id: params.serverid,
-                members: {
-                    some: {
-                        profileId: profile.id
-                    }
-                }
-            },
-            include: {
-                channel: {
-                    where: {
-                        name: "general"
-                    },
-                    orderBy: {
-                        createdAt: "asc"
-                    }
+    const idofserver = params.serverid
+ 
+    const server = await db.server.findUnique({
+        where: {
+            id: params.serverid,
+            members: {
+                some: {
+                    profileId: profile.id
                 }
             }
-        })
-        
-        if(!server) return null;
-        const initialChannel = server?.channel[0]
-
-        if(initialChannel?.name !== "general"){ 
-            return null;
+        },
+        include: {
+            channel: {
+                where: {
+                    name: "general"
+                },
+                orderBy: {
+                    createdAt: "asc"
+                }
+            }
         }
+    })
+    
+    if(!server) return null;
+    const initialChannel = server?.channel[0]
 
-        return redirect(`/servers/${params.serverid}/channels/${initialChannel?.id}`)
-
-    } catch (error) {
-        console.log("Error fetching server: ", error);
+    if(initialChannel?.name !== "general"){ 
         return null;
     }
+
+    return redirect(`/servers/${idofserver}/channels/${initialChannel?.id}`)
+
 }
  
 export default ServerIdPage;
