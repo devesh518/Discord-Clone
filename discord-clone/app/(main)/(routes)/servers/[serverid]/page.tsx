@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 interface ServerIdPageProps{
     params: {
-        serverId: string
+        serverid: string
     }
 }
 
@@ -17,12 +17,11 @@ const ServerIdPage = async ({
     if(!profile){
         return redirectToSignIn()
     }
-    console.log("THIS IS IT ", params.serverId);
 
     try {    
         const server = await db.server.findUnique({
             where: {
-                id: params.serverId,
+                id: params.serverid,
                 members: {
                     some: {
                         profileId: profile.id
@@ -48,7 +47,7 @@ const ServerIdPage = async ({
             return null;
         }
 
-        return redirect(`/servers/${params.serverId}/channels/${initialChannel?.id}`)
+        return redirect(`/servers/${params.serverid}/channels/${initialChannel?.id}`)
 
     } catch (error) {
         console.log("Error fetching server: ", error);
