@@ -15,13 +15,13 @@ export async function DELETE(
     try {
         const profile = await CurrentProfile();
         const { searchParams } = new URL(req.url)
-        const serverid = searchParams.get("serverid");
+        const serverId = searchParams.get("serverId");
 
         if(!profile){
             return new NextResponse("Unauthorized", { status: 401 });
         }
         
-        if(!serverid){
+        if(!serverId){
             return new NextResponse("Server ID missing", { status: 400 })
         }
 
@@ -31,7 +31,7 @@ export async function DELETE(
 
         const server = await db.server.update({
             where: {
-                id: serverid,
+                id: serverId,
                 profileId: profile.id
             },
             data: {
@@ -78,13 +78,13 @@ export async function PATCH(
         const { searchParams } = new URL(req.url)
         const { role }= await req.json()
 
-        const serverid = searchParams.get("serverid")
+        const serverId = searchParams.get("serverId")
 
         if(!profile){
             return new NextResponse("Unauthorized", { status: 401 })
         }
 
-        if(!serverid){
+        if(!serverId){
             return new NextResponse("Server ID missing", { status: 400})
         }
 
@@ -94,7 +94,7 @@ export async function PATCH(
 
         const server = await db.server.update({
             where: {
-                id: serverid,
+                id: serverId,
                 profileId: profile.id
             },
             data: {
@@ -128,9 +128,6 @@ export async function PATCH(
         return NextResponse.json({server})
     } catch (error) {
         console.log("[MEMBERS_ID_PATCH]", error);
-        if (isDynamicServerError(error)) {
-            throw error;
-        }
         return new NextResponse("Internal server error", { status: 500 });
     }
 }
