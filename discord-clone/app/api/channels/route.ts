@@ -33,7 +33,7 @@ export async function POST(
 
         const server = await db.server.update({
             where: {
-                id: serverid,
+                id: serverId,
                 members: {
                     some: {
                         profileId: profile.id,
