@@ -6,7 +6,7 @@ export async function PATCH(
     req: Request,
     { params } : {
         params: {
-            serverId: string
+            serverid: string
         }
     }
 ) {
@@ -21,7 +21,7 @@ export async function PATCH(
 
         const server = await db.server.update({
             where: {
-                id: params.serverId,
+                id: params.serverid,
                 profileId: profile.id,
             },
             data: {
@@ -42,7 +42,7 @@ export async function DELETE(
     req: Request,
     { params } : {
         params : {
-            serverId: string
+            serverid: string
         }
     }
 ) {
@@ -55,7 +55,7 @@ export async function DELETE(
 
         const server = await db.server.delete({
             where: {
-                id: params.serverId,
+                id: params.serverid,
                 profileId: profile.id
             }
         })
