@@ -16,13 +16,13 @@ export async function DELETE(
         const profile = await CurrentProfile();
 
         const { searchParams } = new URL(req.url)
-        const serverId = searchParams.get("serverId")
+        const serverid = searchParams.get("serverid")
 
         if(!profile){
             return new NextResponse("Unauthorized", { status: 401 })
         }
 
-        if(!serverId){
+        if(!serverid){
             return new NextResponse("Server missing", { status: 400 })
         }
 
@@ -32,7 +32,7 @@ export async function DELETE(
 
         const server = await db.server.update({
             where: {
-                id: serverId,
+                id: ,
                 members: {
                     some: {
                         profileId: profile.id,
@@ -78,13 +78,13 @@ export async function PATCH(
 
         const { searchParams } = new URL(req.url)
         const { name, type } = await req.json()
-        const serverId = searchParams.get("serverId")
+        const serverid = searchParams.get("serverid")
 
         if(!profile){
             return new NextResponse("Unauthorized", { status: 401 })
         }
 
-        if(!serverId){
+        if(!serverid){
             return new NextResponse("Server missing", { status: 400 })
         }
 
@@ -98,7 +98,7 @@ export async function PATCH(
 
         const server = await db.server.update({
             where: {
-                id: serverId,
+                id: serverid,
                 members: {
                     some: {
                         profileId: profile.id,
