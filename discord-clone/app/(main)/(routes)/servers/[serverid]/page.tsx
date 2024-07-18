@@ -1,7 +1,7 @@
 import { CurrentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs/server";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 interface ServerIdPageProps{
     params: {
@@ -12,13 +12,11 @@ interface ServerIdPageProps{
 const ServerIdPage = async ({
     params
 }: ServerIdPageProps ) => {
-    const router = useRouter()
     const profile = await CurrentProfile();
 
     if(!profile){
         return redirectToSignIn()
     }
-
     console.log("THIS IS IT ", params.serverId);
 
     try {    
