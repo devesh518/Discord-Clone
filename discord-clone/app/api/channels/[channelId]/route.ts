@@ -32,7 +32,7 @@ export async function DELETE(
 
         const server = await db.server.update({
             where: {
-                id: ,
+                id: serverid,
                 members: {
                     some: {
                         profileId: profile.id,
