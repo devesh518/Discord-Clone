@@ -9,7 +9,7 @@ const ServerIdLayout = async ({
   params,
 }: {
   children: React.ReactNode;
-  params: { serverId: string };
+  params: { serverid: string };
 }) => {
   const profile = await CurrentProfile();
 
@@ -17,11 +17,9 @@ const ServerIdLayout = async ({
     return redirectToSignIn();
   }
 
-  console.log("This is causing the error", params.serverId);
-
   const server = await db.server.findUnique({
     where: {
-      id: params.serverId,
+      id: params.serverid,
       members: {
         some: {
           profileId: profile.id
@@ -37,7 +35,7 @@ const ServerIdLayout = async ({
   return (
     <div className="h-full">
       <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0">
-        <ServerSidebar serverId={params.serverId} />
+        <ServerSidebar serverId={params.serverid} />
       </div>
       <main className="h-full md:pl-60">
         {children}
