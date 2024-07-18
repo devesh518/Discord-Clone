@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 interface MemberIdPageProps {
     params: {
         memberId: string,
-        serverId: string
+        serverid: string
     }
 }
 
@@ -25,7 +25,7 @@ const MemberIdPage = async ({
     
     const currentMember = await db.member.findFirst({
         where: {
-            serverId: params.serverId,
+            serverId: params.serverid,
             profileId: profile.id
         },
         include: {
@@ -41,7 +41,7 @@ const MemberIdPage = async ({
     const conversation = await getOrCreateConversation(currentMember.id, params.memberId)
 
     if(!conversation){
-        return redirect(`/servers/${params.serverId}`)
+        return redirect(`/servers/${params.serverid}`)
     }
 
     const { memberOne, memberTwo } = conversation
@@ -50,7 +50,7 @@ const MemberIdPage = async ({
     return (
         <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
             <ChatHeader
-                serverId={params.serverId}
+                serverId={params.serverid}
                 imageUrl={otherMember.profile.imageUrl}
                 name={otherMember.profile.name}
                 type="conversation"
