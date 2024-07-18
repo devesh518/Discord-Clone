@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 interface ChannelIDPageProps {
   params: {
     channelId: string;
-    serverId: string;
+    serverid: string;
   };
 }
 
@@ -28,7 +28,7 @@ const ChannelIDPage = async ({ params }: ChannelIDPageProps) => {
 
   const member = await db.member.findFirst({
     where: {
-      serverId: params.serverId,
+      serverId: params.serverid,
       profileId: profile.id,
     },
   });
